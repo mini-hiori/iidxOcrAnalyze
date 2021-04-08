@@ -29,7 +29,36 @@ def ocr(target_file_path: str) -> List[str]:
         # これを分割してOCR結果の単語として追加する
         result_texts = result_texts[1:] + result_texts[0].split("\n")
         result_texts = list(set(result_texts))
-    return result_texts
+    # なんかよくわからんけど弱とか強とかのノイズが混じるので除く
+    noizes = (
+        "BEGINNER",
+        "NORMAL",
+        "HYPER",
+        "ANOTHER",
+        "LEGGENDARIA",
+        "PLAY",
+        "RATE",
+        "CLEAR",
+        "FULL",
+        "COMBO",
+        "CHARGE",
+        "PLAY STYLE",
+        "CLEAR RATE",
+        "FULL COMBO RATE",
+        "弱",
+        "強",
+        ",強",
+        "|強",
+        "強,",
+        "*",
+        "弱,",
+        "&",
+        "|",
+        ",",
+        "%",
+        ""
+    )
+    return [i for i in result_texts if i not in noizes]
 
 
 if __name__ == "__main__":

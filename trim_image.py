@@ -4,10 +4,13 @@ import cv2
 
 def trim_image(target_filename: str) -> str:
     """
-    曲名とクリアレートだけ残せるように選曲画面画像をトリミングする
+    曲名とクリアレート、フルコンレートだけ残せるように選曲画面画像をトリミングする
     """
+    target_image = cv2.imread(target_filename)
+    # トリミングの座標指定は選曲画面の画像が1280*720であることが前提
+    cv2.resize(target_image, (1280, 720))
+
     result_file_path = 'clear_rate.jpg'
-    cv2.resize(filename, (1280, 720))  # 座標指定は選曲画面の画像が1280*720であることが前提
     im = Image.open(target_filename)
     im_crop = im.crop((0, 150, 700, 500))
     im_crop.save(result_file_path, quality=100)

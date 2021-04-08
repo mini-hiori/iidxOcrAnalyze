@@ -1,3 +1,4 @@
 pillow
 opencv-python
 google-cloud-vision
+python-Levenshtein
