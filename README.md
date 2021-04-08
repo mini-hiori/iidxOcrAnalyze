@@ -1,0 +1,2 @@
+# iidxOcrAnalyze
+beatmaniaの選曲画面をOCRして情報を取り出す
